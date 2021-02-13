@@ -1,6 +1,6 @@
 exports.run = async (client, message, args) => {
   try {
-    if (!args || args.length < 1) return message.channel.send("You must provide a command to reload!");
+    if (!args || args.length < 1) return message.channel.send("You didn't tell me which command to reload!");
 
     let response = await client.unloadCommand(args[0]);
     if (response) return message.channel.send(`Error unloading: ${response}`);

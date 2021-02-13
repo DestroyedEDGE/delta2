@@ -2,13 +2,13 @@ const client = require("../cybase");
 
 const config = {
   "botName": "Delta", // Name of bot. Don't change this.
-  // NOTE: The IDs are sorted by the comments. So, Devnol is the first ID in "managers", and then comes... well, we don't have any other managers yet but yeah.
-  "owners": ["395990735934980097"], // Rexo has full power ahahahaha
-  "managers": ["429353559566319626", "746149573613060176"], // Devnol & Midou
-  "admins": ["390663607849058307"], // Derser
-  "devs": ["315843700490240002", "486899102760697856"], // Odyssey346 & his alt
-  "mods": [], 
-  "support": ["457110625110327296"], // Akisblack
+  // NOTE: The IDs are sorted by the comments.
+  "owners": ["339903300994596884"], // EDGE
+  "managers": ["315843700490240002", "429353559566319626"], // Odyssey346 / Devnol
+  "admins": [], 
+  "devs": [], 
+  "mods": ["746149573613060176"], // Midou
+  "support": ["457110625110327296"], // akisblack
   "helpers": [],
 
   "blacklisted": [], // Blacklisted IDs (

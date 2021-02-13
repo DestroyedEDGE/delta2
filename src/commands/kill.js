@@ -1,6 +1,12 @@
 exports.run = async (client, message, args, level) => { 
   try {
-    message.channel.send("Check it out here: **https://cytrus-re.github.io**");
+    let res = await client.awaitReply(message, "Are you sure you want to kill the client?");
+    
+    if (res == "yes") {
+      message.channel.send("Killing client...");
+      client.destroy();
+    }
+    else message.channel.send("Aborted.");
   } catch (err) {
     const embed = new Discord.MessageEmbed()
     .setColor("#FF0000")
@@ -13,21 +19,16 @@ exports.run = async (client, message, args, level) => {
   }
 };
 
-//permissions and aliases
-
 exports.conf = {
   enabled: true,
-  aliases: ["cytrusresite", "webpage", "page"],
-  guildOnly: false,
-  permLevel: "User"
+  aliases: ["botdest", "clidest", "destroy"],
+  guildOnly: true,
+  permLevel: "Bot Admin"
 };
 
-
-//what the command does
-
 exports.help = {
-  name: "site",
+  name: "kill",
   category: "System",
-  description: "Returns the link to our (totally good) website hosted on GitHub Pages!",
-  usage: "site"
+  description: "Kills the client and logs out of Discord.",
+  usage: "kill"
 };
