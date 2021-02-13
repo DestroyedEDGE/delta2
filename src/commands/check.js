@@ -1,3 +1,6 @@
+// This is dumb bad code, but more importantly, its dumb bad code that has no real reason to exist.
+// The Global Ban List should just be a blacklist from the bot.
+
 const Discord = require("discord.js");
 
 exports.run = async (client, message, args, level) => {

@@ -1,3 +1,5 @@
+// why the fuck does this exist
+
 exports.run = async (client, message, args, level) => {
   try {
     if (!args[0]) {

@@ -4,7 +4,7 @@ exports.run = async (client, message) => {
    message.channel.send({embed:  
                  { author: { name: client.user.username, icon_url: client.user.avatarURL}, 
                   color: 0x1167b1,
-                  title: "**v1.3.0-delta1**",
+                  title: "**v1.3.0-delta**",
                   fields: [{ name: "There is more to come...", value: "https://discord.gg/hHBy4JZ4hr"}],
                   footer: {text: "By DestroyedEDGE#0120 and Odyssey346#9848"
     } }});

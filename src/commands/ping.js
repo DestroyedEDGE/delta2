@@ -32,6 +32,6 @@ exports.conf = {
 exports.help = {
   name: "ping",
   category: "General",
-  description: "Returns Cytrus-RE's ping.",
+  description: "Returns the bot's ping.",
   usage: "ping"
 };
