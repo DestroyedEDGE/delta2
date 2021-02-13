@@ -12,7 +12,14 @@ exports.run = async (client, message) => {
                   footer: {text: "Made by Rexowogamer#1183, Odyssey346#9848 and Commandblock6417#9366!"
     } }});
   } catch (err) {
-   message.channel.send(client.errors.genericError + err).catch();
+    const embed = new Discord.MessageEmbed()
+    .setColor("#FF0000")
+    .setTitle("Something went wrong")
+    .setFooter(`${client.config.botName} v1.3.0-delta`)
+    .addField("Info", `${client.errors.fancyError}`)
+    .addField("What's the error?", `${err}`)
+    .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
+    message.channel.send(embed);
   }
 };
 

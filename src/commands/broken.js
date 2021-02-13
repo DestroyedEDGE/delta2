@@ -21,9 +21,9 @@ Currently running on: ${clenOS}`);
     .setColor("#FF0000")
     .setTitle("Something went wrong")
     .setFooter(`${client.config.botName} v1.3.0-delta`)
-    .setDescription(`${client.errors.fancyError}
-${err}
-What can I do?\nYou can only report the error. We plan on making it automatically report errors in the future.`);
+    .addField("Info", `${client.errors.fancyError}`)
+    .addField("What's the error?", `${err}`)
+    .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
     message.channel.send(embed);
   }
 };
