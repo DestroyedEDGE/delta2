@@ -1,3 +1,6 @@
+// This is utterly fucking retarded code that really has no reason to exist because its possible to do the password shit by logging userids
+// This will be rewritten eventually...
+
 const Discord = require("discord.js");
 const crypto = require("crypto");
 
