@@ -1,5 +1,3 @@
-// This code doesnt fucking work and I'll probably just remake it from scratch
-
 const Discord = require("discord.js");
 const os = require("os");
 
