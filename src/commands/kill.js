@@ -1,9 +1,9 @@
 exports.run = async (client, message, args, level) => { 
   try {
-    let res = await client.awaitReply(message, "Are you sure you want to destroy the client?");
+    let res = await client.awaitReply(message, "Are you sure you want to kill the client?");
     
     if (res == "yes") {
-      message.channel.send("Destroying client...");
+      message.channel.send("Killing client...");
       client.destroy();
     }
     else message.channel.send("Aborted.");
@@ -14,14 +14,14 @@ exports.run = async (client, message, args, level) => {
 
 exports.conf = {
   enabled: true,
-  aliases: ["botdest", "clidest"],
+  aliases: ["botdest", "clidest", "destroy"],
   guildOnly: true,
   permLevel: "Bot Admin"
 };
 
 exports.help = {
-  name: "destroy",
+  name: "kill",
   category: "System",
-  description: "Destroys the client and logs out of Discord.",
-  usage: "destroy"
+  description: "Kills the client and logs out of Discord.",
+  usage: "kill"
 };
