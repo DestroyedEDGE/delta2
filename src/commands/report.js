@@ -10,7 +10,7 @@ exports.run = async (client, message, args, level) => {
 
 
     let reportEmbed = new Discord.MessageEmbed()
-     .setAuthor("Cytrus-RE User Report")
+     .setAuthor("Delta User Report")
      .setColor("#eeeeee")
      .addField("Reported User", `${rUser} with ID: ${rUser.id}`)
      .addField("Reported By", `${message.author} with ID: ${message.author.id}`)
@@ -18,8 +18,8 @@ exports.run = async (client, message, args, level) => {
      .addField("Reported at", message.createdAt)
      .addField("Reason for report", rreason);
 
-     let reportschannel = client.channels.get("691142562253242409");
-     if(!reportschannel) return message.channel.send("I couldn't find the reports channel!");
+     let reportschannel = client.channels.get("810101595147730944");
+     if(!reportschannel) return message.channel.send("I either can't access the report channel or it doesn't exist.");
      console.log("Report channel exists!"); 
 
      message.delete();
@@ -47,6 +47,6 @@ exports.conf = {
 exports.help = {
   name: "report",
   category: "Moderation",
-  description: "Reports a user to be put on the Cytrus-RE Global Ban List.",
+  description: "Reports a user to be put on the Global Ban List.",
   usage: "report <user> <reason>"
 };
