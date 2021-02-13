@@ -4,7 +4,14 @@ exports.run = async (client, message, args, level) => {
       message.channel.createInvite().then(invite => message.channel.send(`I've succesfuly created the invite!\nCode: https://discord.gg/${invite.code}`));
     } else message.reply("You don't have the Create Invite permission!");
   } catch (err) {
-    message.channel.send(client.errors.genericError + err).catch();
+    const embed = new Discord.MessageEmbed()
+    .setColor("#FF0000")
+    .setTitle("Something went wrong")
+    .setFooter(`${client.config.botName} v1.3.0-delta`)
+    .addField("Info", `${client.errors.fancyError}`)
+    .addField("What's the error?", `${err}`)
+    .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
+    message.channel.send(embed);
   }
 };
 
