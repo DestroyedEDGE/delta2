@@ -50,9 +50,26 @@ module.exports = async (client, message) => {
   if (message.guild && !message.channel.nsfw && cmd.conf.nsfwOnly) return message.channel.send(client.errors.nsfwOnly);
 
   if (level < client.levelCache[cmd.conf.permLevel]) {
-    if (settings.noPermissionNotice) return message.channel.send(`You can't use this command!
-Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name}), but this command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})!`);
-    else return;
+    if (settings.noPermissionNotice === "true") {
+      let permsEmbed = {
+        color: "#80002a",
+        title: "You can't use this command...",
+        fields: [
+          {
+            name: "Your perm levels",
+            value: `${level} (${client.config.permLevels.find(l => l.level === level).name})`
+          },
+          {
+            name: "Required perms for this command",
+            value: `${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`
+          },
+        ],
+        footer: {
+          text: "Does this seem wrong? Join our support server (c.info) and ask a dev for help."
+        },
+      };
+      return message.channel.send({ embed: permsEmbed });
+    }
   }
 
   message.author.permLevel = level;
@@ -68,7 +85,7 @@ Your permission level is ${level} (${client.config.permLevels.find(l => l.level 
     cmd.run(client, message, args, level);
     client.uses.ensure(cmd.help.name, 1);
     client.uses.inc(cmd.help.name); // for metrics
-    client.logger.log(`Command used: ${command}`);
+    client.logger.info(`Command used: ${command}`);
   } catch (err) {
     message.channel.send(client.errors.genericError + err).catch();
   }

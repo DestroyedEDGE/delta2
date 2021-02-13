@@ -1,8 +1,13 @@
-const joke = require("one-liner-joke").getRandomJoke;
+const Discord = require("discord.js");
 
-exports.run = async (client, message, args, level) => { 
+exports.run = async (client, message) => { 
   try {
-    message.channel.send(joke({"exclude_tags": ["dirty", "racist", "marriage", "sex", "death"]}).body);
+      const embed = new Discord.MessageEmbed()
+      .setColor("#eeeeee")
+      .setTitle("Cytrus-RE's Support Discord")
+      .setFooter("Join our server to get help, report bugs, suggest features and more!")
+      .setDescription(`[**Join here!**](${client.config.supportServer})`);
+      message.channel.send(embed);
   } catch (err) {
     const embed = new Discord.MessageEmbed()
     .setColor("#FF0000")
@@ -14,17 +19,17 @@ exports.run = async (client, message, args, level) => {
     message.channel.send(embed);
   }
 };
-
+  
 exports.conf = {
   enabled: true,
-  aliases: ["joke"],
+  aliases: ["supportserver"],
   guildOnly: false,
   permLevel: "User"
 };
-
+  
 exports.help = {
-  name: "randomjoke",
-  category: "General",
-  description: "Returns a random joke.",
-  usage: "randomjoke"
+  name: "support",
+  category: "System",
+  description: "Gives you a link to our Discord server.",
+  usage: "support"
 };

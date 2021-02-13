@@ -5,14 +5,13 @@ const relationship = ["Single", "Married", "Taken", "Forever alone"];
 const hobbies = ["Art", "Drawing", "Painting", "Singing", "Writing", "Anime", "Memes", "Minecraft", "Coding"];
 // Are ya coding son?
 const genres = ["Nightcore", "Heavy Metal", "Alternative", "Electronic", "Classical", "Dubstep", "Jazz", "Pop", "Rap", "Country", "Vaporwave"];
-exports.run = async (client, message, args, level) => { 
+exports.run = async (client, message) => { 
   try {
-    let user = message.mentions.members.first() || message.author;
+    let guildmember = message.mentions.members.first() || message.member;
 
     let embed = new Discord.MessageEmbed()
-    .setTitle("Personality")
-    .setThumbnail(user.avatarURL)
-    .setAuthor(user.username + "'s personality")
+    .setThumbnail(guildmember.user.avatarURL({"dynamic": true, "size": 128}))
+    .setTitle(`${guildmember.displayName}'s personality`)
     .addField("Type", types.random())
     .addField("Social Status", social.random())
     .addField("Relationship Status", relationship.random())
@@ -22,7 +21,14 @@ exports.run = async (client, message, args, level) => {
 
     message.channel.send(embed);
   } catch (err) {
-    message.channel.send(client.errors.genericError + err).catch();
+    const embed = new Discord.MessageEmbed()
+    .setColor("#FF0000")
+    .setTitle("Something went wrong")
+    .setFooter(`${client.config.botName} v1.3.0-delta`)
+    .addField("Info", `${client.errors.fancyError}`)
+    .addField("What's the error?", `${err}`)
+    .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
+    message.channel.send(embed);
   }
 };
 

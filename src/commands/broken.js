@@ -14,7 +14,7 @@ Website: [Check it out](${client.config.site})
 Support Server: [Join](${client.config.supportServer})
 Issues: [Right here](${client.config.github}/issues)
 Version: V1.3
-Currently running on: ${cleanOS}`);
+Currently running on: ${clenOS}`);
     message.channel.send(embed);
   } catch (err) {
     const embed = new Discord.MessageEmbed()

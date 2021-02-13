@@ -1,16 +1,12 @@
-const Discord = require("discord.js");
-const fs = require("fs");
-
 exports.run = async (client, message, args, level) => { 
   try {
-    if (!args[0]) return message.channel.send("You have to tell me which file to send!");
+    let res = await client.awaitReply(message, "Are you sure you want to kill the client?");
     
-    message.author.send(new Discord.Attachment(fs.createReadStream("/app/" + args.join(" ")))).catch(() => {
-      return message.channel.send("I couldn't find the file or there was an error!");
-    });
-
-    
-    message.channel.send("The file has been sent to your DM's!");
+    if (res == "yes") {
+      message.channel.send("Killing client...");
+      client.destroy();
+    }
+    else message.channel.send("Aborted.");
   } catch (err) {
     const embed = new Discord.MessageEmbed()
     .setColor("#FF0000")
@@ -25,14 +21,14 @@ exports.run = async (client, message, args, level) => {
 
 exports.conf = {
   enabled: true,
-  aliases: ["sfl", "sfile"],
-  guildOnly: false,
-  permLevel: "Bot Manager"
+  aliases: ["botdest", "clidest", "destroy"],
+  guildOnly: true,
+  permLevel: "Bot Admin"
 };
 
 exports.help = {
-  name: "sendfile",
+  name: "kill",
   category: "System",
-  description: "Returns the specified file",
-  usage: "sendfile <path>"
+  description: "Kills the client and logs out of Discord.",
+  usage: "kill"
 };

@@ -1,21 +1,21 @@
 const Discord = require("discord.js");
 
-exports.run = async (client, message, args, level) => {
+exports.run = async (client, message, args) => {
   try {
     const settings = client.getSettings(message.guild.id);
     const user = message.mentions.users.first();
     
-    if (!message.guild.roles.find(r => r.name == args.slice(1).join(" "))) return message.send("That's not a role!");
+    if (!message.guild.roles.cache.find(r => r.name == args.slice(1).join(" "))) return message.channel.send("That's not a role!");
     if (user) {
-      if (message.guild.members.get(message.author.id).highestRole.name == "@everyone") message.send("The role you are trying to add is above your highest role's position!");
+      if (message.guild.members.get(message.author.id).highestRole.name == "@everyone") message.channel.send("The role you are trying to add is above your highest role's position!");
       else {
         if (Number(message.member.highestRole.position) >= Number(message.guild.roles.find(r => r.name == args.slice(1).join(" ")).position)) {
           if (message.member.hasPermission("MANAGE_ROLES")) {
               const member = message.guild.member(user);
               if (member) {
-                if (message.guild.roles.find(r => r.name == args.slice(1).join(" "))) {
-                  member.addRole(message.guild.roles.find(r => r.name == args.slice(1).join(" "))).then(() => {
-                    message.reply(`Successfully added Role to ${user.tag}`);
+                if (message.guild.roles.cache.find(r => r.name == args.slice(1).join(" "))) {
+                  member.addRole(message.guild.roles.cache.find(r => r.name == args.slice(1).join(" "))).then(() => {
+                    message.channel.send(`Successfully gave role to ${user.tag}!`);
 
                     const modLogChannel = settings.modLogChannel;
                     if (modLogChannel && message.guild.channels.find(c => c.name === settings.modLogChannel)) {
@@ -27,14 +27,21 @@ exports.run = async (client, message, args, level) => {
                       message.guild.channels.find(c => c.name === settings.modLogChannel).send(embed);
                     }
                   }).catch(client.errors.genericError);
-                } else message.send("I can't find that role!");
-              } else message.send(client.errors.userNotInGuild);
-          } else message.send("You don't have the Manage Roles permission!");
-        } else message.send("The role you are trying to add is above your highest role's position!");
+                } else message.channel.send("I can't find that role!");
+              } else message.channel.send(client.errors.userNotInGuild);
+          } else message.channel.send("You don't have the Manage Roles permission!");
+        } else message.channel.send("The role you are trying to add is above your highest role's position!");
       }
-    } else message.send("You didn't mention the user to add the role to!");
+    } else message.channel.send("You didn't mention the user to add the role to!");
   } catch (err) {
-    message.channel.send(client.errors.genericError + err.stack).catch();
+    const embed = new Discord.MessageEmbed()
+    .setColor("#FF0000")
+    .setTitle("Something went wrong")
+    .setFooter(`${client.config.botName} v1.3.0-delta`)
+    .addField("Info", `${client.errors.fancyError}`)
+    .addField("What's the error?", `${err}`)
+    .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
+    message.channel.send(embed);
   }
 };
 

@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const ms = require("ms");
 
-exports.run = async (client, message, args, level) => {
+exports.run = async (client, message, args) => {
   try {
     const user = message.mentions.users.first();
     const settings = client.getSettings(message.guild.id);
@@ -28,13 +28,20 @@ exports.run = async (client, message, args, level) => {
             }, ms(args.join(" ")));
           }).catch(err => {
            message.reply("I was unable to ban the member");
+           client.logger.error(err);
           });
         } else message.reply("That user isn't in this guild!");
       } else message.reply("You didn't mention the user to ban!");
     } else message.reply("You didin't specify the time to ban them for!");
   } catch (err) {
-    message.channel.send(client.errors.genericError + err).catch();
-    // Celestial grammar detected on European soil. Lethal force enganged.
+    const embed = new Discord.MessageEmbed()
+    .setColor("#FF0000")
+    .setTitle("Something went wrong")
+    .setFooter(`${client.config.botName} v1.3.0-delta`)
+    .addField("Info", `${client.errors.fancyError}`)
+    .addField("What's the error?", `${err}`)
+    .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
+    message.channel.send(embed);
   }
 };
 

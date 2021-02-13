@@ -1,15 +1,17 @@
+const client = require("../cybase");
+
 const config = {
-  "botName": "Cytrus-RE", // Name of bot. Don't change this.
-  // NOTE: The IDs are sorted by the comments. So, Commandblock is the first ID in "managers", and then comes... well, we don't have any other managers yet but yeah.
-  "owners": ["395990735934980097"], // rexo has full power ahahahaha
-  "managers": ["429353559566319626", "746149573613060176"], // commandblock & midou (yes i'm back)
-  "admins": ["390663607849058307"], // derser
-  "devs": ["315843700490240002", "486899102760697856"], //Odyssey346 & his alt
-  "mods": [], 
-  "support": ["457110625110327296"],
+  "botName": "Delta", // Name of bot. Don't change this.
+  // NOTE: The IDs are sorted by the comments.
+  "owners": ["339903300994596884"], // EDGE
+  "managers": ["315843700490240002", "429353559566319626"], // Odyssey346 / Devnol
+  "admins": [], 
+  "devs": [], 
+  "mods": ["746149573613060176"], // Midou
+  "support": ["457110625110327296"], // akisblack
   "helpers": [],
 
-  "blacklisted": [], // Blacklisted IDs
+  "blacklisted": [], // Blacklisted IDs (
   "globalBan": [],
   "token": "process.env.BOT_TOKEN",
   // LINKS:
@@ -19,12 +21,12 @@ const config = {
   "botInvite": "https://terrific-tea.github.io/links/cyinvite",
 
   "defaultSettings" : {
-    "prefix": "c.", // Default prefix
+    "prefix": "d.", // Default prefix
     "modLogChannel": "log", // default logging channel
     "modRole": "Moderator",
     "adminRole": "Administrator",
-    "muteRole": "Cytrus-RE Mute",
-    "noPermissionNotice": true,
+    "muteRole": "Delta Mute",
+    "noPermissionNotice": "true",
     "welcomeChannel": "off-topic",
     "welcomeMessage": "Welcome to the server, {{ping}}!",
     "welcomeEnabled": "true",

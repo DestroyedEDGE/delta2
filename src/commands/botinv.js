@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-exports.run = async (client, message, args, level) => { 
+exports.run = async (client, message) => { 
   try {
     let invEmbed = new Discord.MessageEmbed()
     .setTitle("Invite Cytrus-RE to your server!")
@@ -7,7 +7,14 @@ exports.run = async (client, message, args, level) => {
     .setColor("#eeeeee");
     message.channel.send(invEmbed);
   } catch (err) {
-    message.channel.send(client.errors.genericError + err).catch();
+    const embed = new Discord.MessageEmbed()
+    .setColor("#FF0000")
+    .setTitle("Something went wrong")
+    .setFooter(`${client.config.botName} v1.3.0-delta`)
+    .addField("Info", `${client.errors.fancyError}`)
+    .addField("What's the error?", `${err}`)
+    .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
+    message.channel.send(embed);
   }
 };
 

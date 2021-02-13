@@ -1,15 +1,22 @@
 const http = require("http");
 
-exports.run = async (client, message, args, level) => {
+exports.run = async (client, message) => {
   try {
     http.get({"host": "api.ipify.org", "port": 80, "path": "/"}, resp => {
       resp.on("data", ip => {
-        message.author.send("Cytrus public IP: " + ip);
-        message.channel.send("The Cytrus IP is in your DM's!");
+        message.author.send("Cytrus-RE's public IP: " + ip);
+        message.channel.send("Cytrus-RE's IP is in your DMs!");
       });
     });
   } catch (err) {
-    message.channel.send(client.errors.genericError + err).catch();
+    const embed = new Discord.MessageEmbed()
+    .setColor("#FF0000")
+    .setTitle("Something went wrong")
+    .setFooter(`${client.config.botName} v1.3.0-delta`)
+    .addField("Info", `${client.errors.fancyError}`)
+    .addField("What's the error?", `${err}`)
+    .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
+    message.channel.send(embed);
   }
 };
 
@@ -23,6 +30,6 @@ exports.conf = {
 exports.help = {
   name: "publicip",
   category: "System",
-  description: "Returns the public IP of Cytrus.",
+  description: "Returns Cytrus-RE's public IP.",
   usage: "publicip"
 };
