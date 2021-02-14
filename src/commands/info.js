@@ -7,13 +7,13 @@ exports.run = async (client, message, args, level) => {
     var cleanOS = client.friendlyOS(opsys);
     const embed = new Discord.MessageEmbed()
     .setColor("#eeeeee")
-    .setTitle("Cytrus-RE")
+    .setTitle(`${client.config.botName}`)
     .setFooter("Originally made by CelestialCrafter and EnderGirlGamer. Rewritten by Devnol, Rexowogamer, Odyssey346 and Midou.")
     .setDescription(`Github: [Repo](${client.config.github})
 Website: [Check it out](${client.config.site})
 Support Server: [Join](${client.config.supportServer})
 Issues: [Right here](${client.config.github}/issues)
-Version: V1.3
+Version: V${client.config.version}
 Currently running on: ${cleanOS}`);
     message.channel.send(embed);
   } catch (err) {

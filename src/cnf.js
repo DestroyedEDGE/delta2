@@ -2,6 +2,7 @@ const client = require("../cybase");
 
 const config = {
   "botName": "Delta", // Name of bot. Don't change this.
+  "version": "1.3.0-delta", // Bot version
   // NOTE: The IDs are sorted by the comments.
   "owners": ["339903300994596884"], // EDGE
   "managers": ["315843700490240002", "429353559566319626"], // Odyssey346 / Devnol

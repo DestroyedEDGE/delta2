@@ -82,7 +82,7 @@ exports.run = (client, message, args, level) => {
         if (!output) return message.channel.send("That's not a command, alias, or category!");
         
         let embed = new client.Embed("blend", {
-          title: "Cytrus-RE Help",
+          title: `${client.config.botName} Help`,
           description: output,
           thumbnail: client.user.avatarURL
         });
@@ -94,7 +94,7 @@ exports.run = (client, message, args, level) => {
     const embed = new Discord.MessageEmbed()
     .setColor("#FF0000")
     .setTitle("Something went wrong")
-    .setFooter(`${client.config.botName} v1.3.0-delta`)
+    .setFooter(`${client.config.botName} v${client.config.version}`)
     .addField("Info", `${client.errors.fancyError}`)
     .addField("What's the error?", `${err}`)
     .addField("What can I do?", `You can only report the error. We plan on making it automatically report errors in the future.`);
