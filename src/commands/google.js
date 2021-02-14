@@ -1,3 +1,6 @@
+// This code as of right now is quite bad and needs to be rewritten
+// It doesnt even work at all and just throws an error in the console -EDGE
+
 const google = require("google");
 
 google.protocol = "https"; // this could help 
