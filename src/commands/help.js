@@ -17,7 +17,7 @@ exports.run = (client, message, args, level) => {
       });
       
       let embed = new client.Embed("normal", {
-        title: "Cytrus-RE Help",
+        title: `${client.config.botName} Help`,
         thumbnail: client.user.avatarURL,
         description: output,
         footer: `Check out the website (${serverPrefix}site) for a list of commands and more!`
